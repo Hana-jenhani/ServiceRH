@@ -1,17 +1,18 @@
 package com.service.RH.service;
 
+import com.service.RH.model.User;
 import com.service.RH.model.UserInformation;
 
 import java.util.List;
 
 public interface IUserService {
-    List<UserInformation> findAllUser();
+    List<User> findAllUser();
 
-    UserInformation addUser(UserInformation u);
+    User addUser(User u);
 
-    UserInformation updateUser(UserInformation u);
-    UserInformation getUserById(long Id);
+    User updateUser(User u);
+    User getUserById(long id);
 
-    void deleteUserById(long Id);
+    Boolean deleteUserById(long id);
 
 }

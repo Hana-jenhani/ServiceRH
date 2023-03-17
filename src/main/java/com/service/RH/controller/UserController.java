@@ -2,6 +2,7 @@ package com.service.RH.controller;
 
 import com.service.RH.Converter.UserInformationConverter;
 import com.service.RH.DTO.UserInformationDto;
+import com.service.RH.model.User;
 import com.service.RH.model.UserInformation;
 import com.service.RH.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class UserController {
 
     // http://localhost:8089/SpringMVC/retrieve-all-user
     @GetMapping("/retrieve-all-user")
-    public List<UserInformationDto> list() {
-        return userInformationConverter.entityToDto(userService.findAllUser());
+    public List<User> list() {
+        return userService.findAllUser();
     }
 
     //http://localhost:8089/SpringMVC/add-user
     @PostMapping("/add-user")
-    public void add(@RequestBody UserInformation user) {
+    public void add(@RequestBody User user) {
         userService.addUser(user);
     }
 
@@ -34,8 +35,8 @@ public class UserController {
     // http://localhost:8089/SpringMVC/retrieve-user/3
     @GetMapping("/retrieve-user/{user-Id}")
     @ResponseBody
-    public UserInformationDto retrieveUser(@PathVariable("user-Id") Long Id) {
-        return userInformationConverter.entityToDto(userService.getUserById(Id));
+    public User retrieveUser(@PathVariable("user-Id") Long Id) {
+        return userService.getUserById(Id);
     }
 
     // http://localhost:8089/SpringMVC/remove-user/{user-id}
@@ -48,7 +49,7 @@ public class UserController {
     // http://localhost:8089/SpringMVC/modify-user
     @PutMapping("/modify-user")
     @ResponseBody
-    public UserInformation modifyuser(@RequestBody UserInformation u) {
+    public User modifyuser(@RequestBody User u) {
         return userService.updateUser(u);
     }
 
